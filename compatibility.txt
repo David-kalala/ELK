@@ -1,0 +1,8 @@
+Search Guard Classic
+Non-FLX releases of Search Guard do not receive new features. Whenever possible, you should choose Search Guard FLX.
+
+Search Guard Suite 7
+Elasticsearch	  Search Guard Elasticsearch Plugin	  Search Guard Kibana Plugin	 SG Admin Standalone	Status
+7.17.1	        53.4.0	                            53.0.0	                     53.4.0	              EOL
+
+<https://docs.search-guard.com/latest/search-guard-versions> 
