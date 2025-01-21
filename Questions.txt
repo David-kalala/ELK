@@ -1,0 +1,1 @@
+comment faire pour leur donner le mdp et le user ? Car j'imagine mal chaque user utiliser le meme user ( vu qu'ils ont un compte )
