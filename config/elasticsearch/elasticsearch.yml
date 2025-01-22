@@ -1,0 +1,26 @@
+# --- Paramètres de base pour le cluster ---
+cluster.name: "docker-cluster"
+node.name: ${node.name}
+discovery.type: ${discovery.type}
+bootstrap.memory_lock: ${bootstrap.memory_lock}
+xpack.security.enabled: false
+network.host: 0.0.0.0
+searchguard.authcz.admin_dn:
+  - "EMAILADDRESS=davidkalalak@gmail.com,CN=Altaru,OU=KinEco,O=KinEco,L=Bures,ST=Paris,C=FR"
+
+
+# --- Paramètres Search Guard pour le TRANSPORT SSL ---
+searchguard.ssl.transport.enabled: true
+
+# Emplacements des certificats (tels que copiés dans /usr/share/elasticsearch/config/certs/)
+searchguard.ssl.transport.pemcert_filepath: certs/node.pem
+searchguard.ssl.transport.pemkey_filepath: certs/node-key.pem
+searchguard.ssl.transport.pemtrustedcas_filepath: certs/root-ca.pem
+searchguard.ssl.transport.enforce_hostname_verification: false
+searchguard.ssl.transport.resolve_hostname: false
+
+# Mot de passe de la clé, si défini
+searchguard.ssl.transport.pemkey_password: "altaru"
+
+# Désactivation (optionnelle) de TLS sur l'HTTP si vous ne l’utilisez pas pour Kibana
+searchguard.ssl.http.enabled: false

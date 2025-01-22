@@ -1,0 +1,23 @@
+# Utilise l'image Elastic officielle
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.17.1
+
+# Copie le plugin Search Guard dans le conteneur
+COPY plugins/search-guard-suite-plugin-7.17.1-53.4.0.zip /tmp/
+
+# Installe le plugin Search Guard ES
+RUN elasticsearch-plugin install --batch file:///tmp/search-guard-suite-plugin-7.17.1-53.4.0.zip
+
+
+# Copie des certificats dans l'image
+COPY certs/ /usr/share/elasticsearch/config/certs/
+
+# Copie des fichiers de configuration Search Guard
+COPY config/elasticsearch/ /usr/share/elasticsearch/config/
+
+# Ajuster droits
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config \
+    && chmod 600 /usr/share/elasticsearch/config/certs/node-key.pem
+
+
+# Variables d'environnement ou config
+ENV discovery.type=single-node

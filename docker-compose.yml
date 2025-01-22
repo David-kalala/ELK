@@ -1,14 +1,16 @@
-version: '3'
+
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.13
-    container_name: es-test
+    build:
+      context: .
+      dockerfile: Dockerfile.elasticsearch
+    container_name: elastic-test
     environment:
-      - node.name=es-test
+      - node.name=elastic-test
       - discovery.type=single-node
-      - xpack.security.enabled=true
+      - xpack.security.enabled=false
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - ELASTIC_PASSWORD=changeme
     ulimits:
       memlock:
@@ -17,16 +19,30 @@ services:
     ports:
       - 9200:9200
 
+    networks:
+      - sg-net
+
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.17.13
+    build:
+      context: .
+      dockerfile: Dockerfile.kibana
     container_name: kibana-test
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - ELASTICSEARCH_USERNAME=elastic
       - ELASTICSEARCH_PASSWORD=changeme
       - SERVER_NAME=kibana-test
-      - XPACK_SECURITY_ENABLED=true
-    ports:
-      - 5601:5601
+      - XPACK_SECURITY_ENABLED=false
+      - searchguard.multitenancy.enabled=true
+
     depends_on:
       - elasticsearch
+
+    ports:
+      - 5601:5601
+    networks:
+      - sg-net
+networks:
+  sg-net:
+    driver: bridge
+    

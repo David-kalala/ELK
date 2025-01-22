@@ -1,0 +1,8 @@
+searchguard.multitenancy.enabled: true
+searchguard.multitenancy.tenants.enable_global: false
+searchguard.multitenancy.tenants.enable_private: true
+searchguard.multitenancy.tenants.preferred:
+  - Private
+  - grid_tenant
+  - egf_tenant
+

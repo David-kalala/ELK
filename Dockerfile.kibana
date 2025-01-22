@@ -1,0 +1,14 @@
+FROM docker.elastic.co/kibana/kibana:7.17.1
+
+# Copie du plugin Search Guard Kibana
+COPY plugins/search-guard-kibana-plugin-7.17.1-53.0.0.zip /tmp/
+
+# Installation du plugin
+RUN kibana-plugin install file:///tmp/search-guard-kibana-plugin-7.17.1-53.0.0.zip
+
+
+# Copie des certificats dans l'image
+COPY certs/ /usr/share/elasticsearch/config/certs/
+
+# Copie eventuelle de config Kibana (kibana.yml + param. Search Guard)
+COPY config/kibana/ /usr/share/kibana/config/

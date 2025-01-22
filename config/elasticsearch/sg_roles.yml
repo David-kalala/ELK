@@ -1,0 +1,32 @@
+sg_all_access:
+  cluster_permissions:
+    - "CLUSTER_ALL"
+  indices:
+    "*":
+      "*":
+        - "ALL"
+  tenants:
+    admin_tenant: RW
+  kibana_access: unrestricted
+
+sg_role_grid:
+  cluster_permissions:
+    - "CLUSTER_MONITOR"
+  indices:
+    "logs-marketing-*":
+      "*":
+        - "READ"
+  tenants:
+    grid_tenant: RW   # lecture/écriture sur ce tenant Kibana
+  kibana_access: ro        # ro = read-only sur Kibana ?
+
+sg_role_egf:
+  cluster_permissions:
+    - "CLUSTER_MONITOR"
+  indices:
+    "logs-ops-*":
+      "*":
+        - "READ"
+  tenants:
+    egf_tenant: RW
+  kibana_access: ro

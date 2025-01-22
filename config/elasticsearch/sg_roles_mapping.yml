@@ -1,0 +1,11 @@
+sg_all_access:
+  users:
+    - "admin"
+
+sg_role_grid:
+  users:
+    - "user_grid"
+
+sg_role_egf:
+  users:
+    - "user_egf"
