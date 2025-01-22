@@ -1,0 +1,26 @@
+_sg_meta:
+  type: "actiongroups"
+  config_version: 2
+
+UNLIMITED:
+  allowed_actions:
+    - "*"
+
+READ:
+  allowed_actions:
+    - "indices:data/read*"
+    - "indices:admin/mappings/fields/get*"
+    - "indices:admin/validate/query*"
+
+WRITE:
+  allowed_actions:
+    - "indices:data/write*"
+
+DELETE:
+  allowed_actions:
+    - "indices:data/write/delete*"
+
+SEARCH:
+  allowed_actions:
+    - "indices:data/read/search*"
+    - "indices:data/read/msearch*"

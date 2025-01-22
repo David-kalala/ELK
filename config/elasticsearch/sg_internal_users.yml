@@ -1,19 +1,24 @@
-# Utilisateurs gérés par la base interne de Search Guard (pas LDAP)
+_sg_meta:
+  type: "internalusers"
+  config_version: 2
 
 admin:
-  hash: "$2y$12$ZlQbnTZ9bWY2E...vu7UwogK"  # mot de passe haché bcrypt
-  # Pour générer ce hash, on utilise l'outil Hasher fourni par Search Guard ou un bcrypt en ligne
-  # https://docs.search-guard.com/latest/password-hashing
-  roles:
+  hash: "$2y$12$k5t1yZl17ClHzG3HCHS54e4r.crpn/T0NK8HLWFZ8yfEz13Fk3PyK"
+  search_guard_roles:
     - "sg_all_access"
+  reserved: false
+  hidden: false
 
 user_grid:
-  hash: "$2y$12$Z0JklZf12b...X/qG9uSG"   
-  # mot de passe "" par exemple
-  roles:
+  hash: "$2y$12$k5t1yZl17ClHzG3HCHS54e4r.crpn/T0NK8HLWFZ8yfEz13Fk3PyK"
+  search_guard_roles:
     - "sg_role_grid"
+  reserved: false
+  hidden: false
 
 user_egf:
-  hash: "$2y$12$ACNFe../CPS6...JDEW"
-  roles:
+  hash: "$2y$12$k5t1yZl17ClHzG3HCHS54e4r.crpn/T0NK8HLWFZ8yfEz13Fk3PyK"
+  search_guard_roles:
     - "sg_role_egf"
+  reserved: false
+  hidden: false

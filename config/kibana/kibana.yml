@@ -5,4 +5,5 @@ searchguard.multitenancy.tenants.preferred:
   - Private
   - grid_tenant
   - egf_tenant
+  - admin_tenant
 

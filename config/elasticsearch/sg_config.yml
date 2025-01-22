@@ -1,30 +1,23 @@
-searchguard:
-  ssl:
-    transport:
-      enabled: true
-      pemcert_filepath: certs/node.pem
-      pemkey_filepath: certs/node-key.pem
-      pemtrustedcas_filepath: certs/root-ca.pem
-      # Si votre clé est protégée par un mot de passe, le mettre ici :
-      pemkey_password: "altaru"
-    # http:
-    #   enabled: false  # si vous ne chiffriez pas l'HTTP, sinon vous pouvez l'activer
-
-  allow_unsafe_democertificates: false
-  allow_default_init_sgindex: true  # pour un test local
-  searchguard.ssl.transport.enabled: true
-  searchguard.ssl.transport.pemcert_filepath: certs/node.pem
-  searchguard.ssl.transport.pemkey_filepath: certs/node-key.pem
-  searchguard.ssl.transport.pemtrustedcas_filepath: certs/root-ca.pem
+_sg_meta:
+  type: "config"
+  config_version: 2
+sg_config:
   dynamic:
-  
-    # Liste les ordres d'authentification possibles
     http:
+      # Authentification anonyme
       anonymous_auth_enabled: false
+
+      # X-Forwarded-For
       xff:
         enabled: false
 
-    # Authentification par login/password interne (fichiers sg_internal_users.yml)
+    # Paramètres Kibana / multi-tenant
+    kibana:
+      multitenancy_enabled: true
+      server_username: "kibanaserver"
+      index: ".kibana"
+
+    # Domaines d'authentification
     authc:
       basic_internal_auth_domain:
         description: "Basic internal authentication"
@@ -36,22 +29,4 @@ searchguard:
           challenge: true
         authentication_backend:
           type: internal
-
-    # Autorisation
-    #authz:
-      #roles_from_myldap:
-        # Exemple si vous utilisiez LDAP, sinon vous pouvez supprimer
-       # http_enabled: false
-       # transport_enabled: false
-       # authorization_backend:
-        #  type: ldap
-
-    # Paramètres Kibana / REST API
-    kibana:
-      multitenancy_enabled: true
-      server_username: "kibanaserver"  # un user technique si besoin
-      index: ".kibana"
-
-    
-
 
